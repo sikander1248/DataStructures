@@ -201,5 +201,51 @@ void deleteNode(nodedata_t key){
                    implemented");
         }
     }
-
+}
+#if 1
+int findMax(NODE_t *root)
+{
+    if(root->rlink == NULL)
+        return root->data;
+    findMax(root->rlink);
+}
+#else
+int findMax(NODE_t *root)
+{
+    printf("Findmax using loop \n");
+    while(root->rlink != NULL)
+        root = root->rlink;
+    return root->data;
+}
+#endif
+#if 1
+int findMin(NODE_t *root)
+{
+    if(root->llink == NULL)
+        return root->data;
+    findMax(root->llink);
+}
+#else
+int findMin(NODE_t *root)
+{
+    printf("Findmin using loop \n");
+    while(root->llink != NULL)
+        root = root->llink;
+    return root->data;
+}
+#endif
+int main()
+{
+    int arr[] = {23,21,6,38,45,3,9,4,29,25,34};
+    int n = sizeof(arr) / sizeof(int);
+    for(int i = 0 ; i < n ; i++)
+        insert(arr[i]);
+    printf("\n Elements of Tree : Inorder Traversal \n ");
+    inorder(root);
+    printf("\n Elements of Tree : Preorder Traversal \n ");
+    preorder(root);
+    
+    int large = findMax(root);
+    printf("\n Largest element of tree :  %d \n", large);
+    
 }
